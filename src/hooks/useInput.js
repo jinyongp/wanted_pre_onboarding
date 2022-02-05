@@ -11,5 +11,5 @@ export default function useInput(initialInputValue, validator = () => true) {
     setInputValue('');
   };
 
-  return { inputValue, onChange, clear };
+  return { inputValue, onChange, setInputValue, clear };
 }

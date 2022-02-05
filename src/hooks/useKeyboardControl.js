@@ -1,9 +1,10 @@
 export default function useKeyboardControl(keyControls) {
-  const onKeyPress = (event) => {
+  const onKeyDown = (event) => {
+    if (event.keyCode === 229) return;
     Object.entries(keyControls).forEach(([keyType, func]) => {
       if (event.key === keyType) func(event);
     });
   };
 
-  return { onKeyPress };
+  return { onKeyDown };
 }
