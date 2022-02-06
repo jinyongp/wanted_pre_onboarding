@@ -30,7 +30,10 @@ const ClickableInput = styled.input`
 
 export default function ClickToEdit({ label, initValue, onEnter }) {
   const inputRef = useRef();
-  const { inputValue, onChange } = useInput(initValue, (value) => inputValue || value !== ' ');
+  const { inputValue, onChange, clear } = useInput(
+    initValue,
+    (value) => inputValue || value !== ' ',
+  );
   const { onKeyDown } = useKeyboardControl({
     Enter() {
       inputRef.current.blur();
@@ -54,8 +57,9 @@ export default function ClickToEdit({ label, initValue, onEnter }) {
         placeholder="Click to edit!"
         ref={inputRef}
         onBlur={() => {
+          if (/\S/.test(inputValue)) onEnter(inputValue);
+          else clear();
           inputRef.current.disabled = true;
-          inputValue && onEnter(inputValue);
         }}
         onChange={onChange}
         onKeyDown={onKeyDown}
