@@ -73,7 +73,8 @@ const useTag = (initialTags) => {
 
   const addTag = (tag) => {
     if (!tag.match(/\S/)) return;
-    setTagList((prev) => prev.add(tag.trim()));
+    tagList.add(tag.trim());
+    setTagList(new Set(tagList));
   };
 
   const deleteTag = (tag) => {
@@ -91,11 +92,8 @@ export default function Tag({ initTags = [] }) {
     inputValue: tagName,
     onChange,
     clear,
-  } = useInput('', (value) => {
-    if (value === ' ' && !tagName) return false;
-    return true;
-  });
-  const { onKeyPress } = useKeyboardControl({
+  } = useInput('', (value) => tagName || value !== ' ');
+  const { onKeyDown } = useKeyboardControl({
     Enter() {
       addTag(tagName);
       clear();
@@ -116,7 +114,7 @@ export default function Tag({ initTags = [] }) {
         type="text"
         value={tagName}
         onChange={onChange}
-        onKeyPress={onKeyPress}
+        onKeyDown={onKeyDown}
         onFocus={() => setActive(true)}
         onBlur={() => {
           setActive(false);
