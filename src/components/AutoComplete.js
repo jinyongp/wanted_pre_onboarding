@@ -56,7 +56,7 @@ const ClearButton = styled.div`
   cursor: pointer;
 `;
 
-export default function AutoComplete({ delay = 300, keywords, onEnter }) {
+export default function AutoComplete({ delay = 300, keywords, initValue = '', onEnter }) {
   const searchBarRef = useRef();
   const suggestionsRef = useRef();
 
@@ -64,7 +64,7 @@ export default function AutoComplete({ delay = 300, keywords, onEnter }) {
   const [mouseMode, setMouseMode] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [suggestions, setSuggestions] = useState([]);
-  const { inputValue, onChange, setInputValue, clear } = useInput();
+  const { inputValue, onChange, setInputValue, clear } = useInput(initValue);
   const { onKeyDown } = useKeyboardControl({
     Enter() {
       if (!inputValue) return;
@@ -95,7 +95,7 @@ export default function AutoComplete({ delay = 300, keywords, onEnter }) {
   });
 
   const debouncedGenerateSuggestions = useDebounce(() => {
-    if (!inputValue) return;
+    if (!inputValue) return setSuggestions([]);
     const regex = getFuzzyMatcher(inputValue);
     const filteredSuggestions = keywords
       .filter((keyword) => regex.test(keyword))
