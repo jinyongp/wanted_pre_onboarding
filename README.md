@@ -14,6 +14,45 @@
 - `yarn build`
 - `yarn deploy`
 
+## 프로젝트 구조
+
+<details>
+<summary>펼쳐보기</summary>
+
+```
+.
+├── README.md
+├── package.json
+├── yarn.lock
+├── public
+│   └── index.html
+└── src
+    ├── App.js
+    ├── data.js
+    ├── global-style.js
+    ├── index.js
+    ├── utils.js
+    ├── components
+    │   ├── AutoComplete.js
+    │   ├── ClickToEdit.js
+    │   ├── Modal.js
+    │   ├── Tab.js
+    │   ├── Tag.js
+    │   ├── Toggle.js
+    │   └── index.js
+    ├── constants
+    │   ├── media.js
+    │   └── theme.js
+    └── hooks
+        ├── index.js
+        ├── useDebounce.js
+        ├── useInput.js
+        ├── useKeyboardControl.js
+        └── useThrottle.js
+```
+
+</details>
+
 ## 컴포넌트
 
 ### TOC
@@ -157,3 +196,9 @@
 - Validator를 이용해 아무것도 입력되지 않았을 때 공백을 작성하지 못하도록 하였는데, 텍스트를 전체 선택 후 공백을 작성하면 막지 못한다는 것을 확인했습니다. 입력을 마치고 값을 넘겨야할 때, 현재 값이 공백으로만 이루어져 있다면 값을 비우고 `onEnter`를 호출하지 않도록 구현하여 해결했습니다.
 
 - ~~엔터를 눌렀을 때 `onEnter` 함수를 호출하는 `onKeyDown` 이벤트에서 한글을 작성하고 엔터를 쳤을 때 마지막 글자가 두 번 나오는 문제가 있었습니다. `onKeyPress` 이벤트로 대체하여 해결했습니다.~~ `AutoComplete`에서 겪은 문제와 동일합니다.
+
+## 레퍼런스
+
+- [Ryan Florence - Compound Components](https://www.youtube.com/watch?v=hEGg-3pIHlE)
+- [한글도 지원하는 퍼지 문자열 검색](https://taegon.kim/archives/9919)
+- [Deploy React App using Github Actions](https://dev.to/achukka/deploy-react-app-using-github-actions-157d)
