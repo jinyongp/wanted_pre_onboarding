@@ -18,6 +18,7 @@ const ClickableInput = styled.input`
   cursor: text;
 
   &:disabled {
+    opacity: 1;
     text-align: center;
     cursor: pointer;
     background-color: white;

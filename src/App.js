@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import styled, { css, ThemeProvider } from 'styled-components';
 import { AutoComplete, ClickToEdit, Modal, Tab, Tag, Toggle } from './components';
+import { device } from './constants/media';
+import { theme } from './constants/theme';
 import { keywords, lorem } from './data';
 import { GlobalStyle } from './global-style';
-import theme from './theme';
 
 const centerItems = css`
   display: flex;
@@ -24,6 +25,7 @@ const MainLayout = styled.div`
   align-items: center;
   min-height: 100vh;
   padding: 30px 0;
+  padding: 10px;
 `;
 
 const ComponentName = styled.h2``;
@@ -36,7 +38,6 @@ const ComponentKind = styled.h4`
 `;
 
 const ComponentContainer = styled.div`
-  min-width: 500px;
   padding: 20px;
   margin: 30px 0;
   display: flex;
@@ -46,6 +47,12 @@ const ComponentContainer = styled.div`
   align-items: center;
   border-radius: 20px;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.1);
+  min-width: 400px;
+
+  @media ${device.mobile} {
+    width: 100%;
+    min-width: auto;
+  }
 `;
 
 const ZIndexItem = styled.div`
@@ -71,6 +78,17 @@ const ToggleContainer = () => {
       <Toggle onToggle={setOn} />
       <Label>Toggle Switch {on ? 'ON' : 'OFF'}</Label>
     </>
+  );
+};
+
+const AutoCompleteContainer = () => {
+  const [query, setQuery] = useState('');
+
+  return (
+    <Center style={{ flexDirection: 'column', justifyContent: 'space-between', height: 250 }}>
+      <AutoComplete name="games" keywords={keywords} onEnter={setQuery} />
+      <Label style={{ alignSelf: 'start' }}>입력한 검색어: {query}</Label>
+    </Center>
   );
 };
 
@@ -163,19 +181,13 @@ export default function App() {
           <ComponentContainer>
             <ComponentKind>Empty</ComponentKind>
             <Tag />
-            <ComponentKind>Wrap</ComponentKind>
+            <ComponentKind>Wrap(w/ Drag)</ComponentKind>
             <Tag initTags={['codestates', 'wanted', 'onboarding', 'kimcoding']} />
           </ComponentContainer>
           <ComponentName>AutoComplete</ComponentName>
-          <ComponentContainer style={{ height: 300 }}>
+          <ComponentContainer>
             <ComponentKind>Default(Fuzzy)</ComponentKind>
-            <div style={{ width: '100%', flex: 1 }}>
-              <AutoComplete
-                name="games"
-                keywords={keywords}
-                onEnter={(word) => console.log(word)}
-              />
-            </div>
+            <AutoCompleteContainer />
           </ComponentContainer>
           <ComponentName>ClickToEdit</ComponentName>
           <ComponentContainer>

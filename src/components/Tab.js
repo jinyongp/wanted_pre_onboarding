@@ -10,7 +10,8 @@ const useTabContext = () => {
 };
 
 const TabContainer = styled.div`
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   height: 300px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;

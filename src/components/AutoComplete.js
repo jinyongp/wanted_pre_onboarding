@@ -1,18 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { device } from '../constants/media';
 import { useDebounce, useInput, useKeyboardControl } from '../hooks';
 import { getFuzzyMatcher } from '../utils';
 
 const Container = styled.div`
-  width: 100%;
-  max-width: 400px;
+  min-width: 400px;
   box-shadow: ${({ $active }) =>
     $active ? '0 2px 4px 1px rgba(0, 0, 0, 0.2)' : '0 1px 1px 1px rgba(0, 0, 0, 0.1)'};
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  margin: 10px;
   background-color: white;
+
+  @media ${device.mobile} {
+    width: 100%;
+    min-width: auto;
+  }
 `;
 
 const SearchBarContainer = styled.div`

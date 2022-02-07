@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { device } from '../constants/media';
 
 const Button = styled.button`
   display: flex;
@@ -25,11 +26,12 @@ const ModalBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2147483647;
+  z-index: 1000;
 `;
 
 const ModalContainer = styled.div`
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   height: 200px;
   border-radius: 30px;
   box-shadow: 0 3px 10px 3px rgba(0, 0, 0, 0.1);
@@ -38,6 +40,11 @@ const ModalContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media ${device.mobile} {
+    max-width: auto;
+    margin: 10px;
+  }
 `;
 
 const ModalHeader = styled.div`
@@ -56,8 +63,10 @@ export default function Modal({ title = 'Open Modal', children }) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (open) document.body.classList.add('disable-scroll');
-    else document.body.classList.remove('disable-scroll');
+    if (!/iPhone|iPad|Android/.test(navigator.userAgent)) {
+      if (open) document.body.classList.add('disable-scroll');
+      else document.body.classList.remove('disable-scroll');
+    }
   }, [open]);
 
   const openModal = () => setOpen(true);

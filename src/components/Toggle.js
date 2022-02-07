@@ -5,7 +5,6 @@ const SwitchContainer = styled.div`
   width: 90px;
   height: 40px;
   border-radius: 150px;
-  margin: 0 auto;
   padding: 0 5px;
   border: none;
   transition: background-color 0.2s ease-in-out;
@@ -15,7 +14,7 @@ const SwitchContainer = styled.div`
   align-items: center;
 `;
 
-const Switch = styled.div`
+const Switch = styled.button`
   width: 30px;
   height: 30px;
   cursor: pointer;

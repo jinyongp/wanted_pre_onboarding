@@ -1,16 +1,22 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { device } from '../constants/media';
 import { useInput, useKeyboardControl } from '../hooks';
 
 const TagContainer = styled.div`
-  width: 400px;
+  width: 100%;
+  min-width: 400px;
+  max-width: 400px;
   min-height: 40px;
   display: flex;
   align-items: center;
   border-radius: 8px;
   border: 1px solid ${({ $active }) => ($active ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, 0.5)')};
   flex-wrap: wrap;
-  margin: 10px;
+
+  @media ${device.mobile} {
+    min-width: auto;
+  }
 `;
 
 const TagItem = styled.div`
