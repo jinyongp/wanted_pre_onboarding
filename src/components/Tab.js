@@ -1,5 +1,6 @@
 import { Children, createContext, useContext, useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
+import { device } from '../constants/media';
 
 const TabContext = createContext();
 
@@ -10,12 +11,15 @@ const useTabContext = () => {
 };
 
 const TabContainer = styled.div`
-  width: 100%;
-  max-width: 400px;
+  width: 400px;
   height: 300px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
+
+  @media ${device.mobile} {
+    width: 100%;
+  }
 `;
 
 const SelectContainer = styled.div`

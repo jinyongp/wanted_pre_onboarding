@@ -30,8 +30,7 @@ const ModalBackground = styled.div`
 `;
 
 const ModalContainer = styled.div`
-  width: 100%;
-  max-width: 400px;
+  width: 400px;
   height: 200px;
   border-radius: 30px;
   box-shadow: 0 3px 10px 3px rgba(0, 0, 0, 0.1);
@@ -42,7 +41,7 @@ const ModalContainer = styled.div`
   align-items: center;
 
   @media ${device.mobile} {
-    max-width: auto;
+    width: 100%;
     margin: 10px;
   }
 `;

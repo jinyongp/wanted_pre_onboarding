@@ -4,9 +4,7 @@ import { device } from '../constants/media';
 import { useInput, useKeyboardControl } from '../hooks';
 
 const TagContainer = styled.div`
-  width: 100%;
-  min-width: 400px;
-  max-width: 400px;
+  width: 400px;
   min-height: 40px;
   display: flex;
   align-items: center;
@@ -15,7 +13,7 @@ const TagContainer = styled.div`
   flex-wrap: wrap;
 
   @media ${device.mobile} {
-    min-width: auto;
+    width: 100%;
   }
 `;
 

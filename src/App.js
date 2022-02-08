@@ -181,7 +181,7 @@ export default function App() {
           <ComponentContainer>
             <ComponentKind>Empty</ComponentKind>
             <Tag />
-            <ComponentKind>Wrap(w/ Drag)</ComponentKind>
+            <ComponentKind>Wrap</ComponentKind>
             <Tag initTags={['codestates', 'wanted', 'onboarding', 'kimcoding']} />
           </ComponentContainer>
           <ComponentName>AutoComplete</ComponentName>

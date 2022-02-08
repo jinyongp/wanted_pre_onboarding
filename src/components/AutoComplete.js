@@ -5,7 +5,7 @@ import { useDebounce, useInput, useKeyboardControl } from '../hooks';
 import { getFuzzyMatcher } from '../utils';
 
 const Container = styled.div`
-  min-width: 400px;
+  width: 400px;
   box-shadow: ${({ $active }) =>
     $active ? '0 2px 4px 1px rgba(0, 0, 0, 0.2)' : '0 1px 1px 1px rgba(0, 0, 0, 0.1)'};
   border-radius: 10px;
@@ -15,7 +15,6 @@ const Container = styled.div`
 
   @media ${device.mobile} {
     width: 100%;
-    min-width: auto;
   }
 `;
 
